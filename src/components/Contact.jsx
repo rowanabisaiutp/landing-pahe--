@@ -10,15 +10,31 @@ export default function Contact() {
     nivel: '',
     descripcion: '',
   })
-  const [sent, setSent] = useState(false)
+  const [sent, setSent]       = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError]     = useState(false)
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
-    setSent(true)
+    setLoading(true)
+    setError(false)
+    try {
+      const res = await fetch('/.netlify/functions/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error('network')
+      setSent(true)
+    } catch {
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -31,6 +47,14 @@ export default function Contact() {
             Llena el formulario con el contexto del puesto y te contacto en menos de 24 horas
             para coordinar una llamada inicial.
           </p>
+          <div className="contact-detail">
+            <span className="contact-label">Correo directo</span>
+            <span className="contact-value">aide.yunis@headhuntery.com</span>
+          </div>
+          <div className="contact-detail">
+            <span className="contact-label">Teléfono / WhatsApp</span>
+            <span className="contact-value">+52 332 163 1410</span>
+          </div>
           <div className="contact-detail">
             <span className="contact-label">Respuesta garantizada en</span>
             <span className="contact-value">— 24 horas hábiles</span>
@@ -96,8 +120,13 @@ export default function Contact() {
                   placeholder="Cuéntame brevemente el puesto, responsabilidades clave y cualquier requisito importante..."
                   value={form.descripcion} onChange={handleChange} required />
               </div>
-              <button type="submit" className="btn btn-primary btn-block">
-                Enviar solicitud
+              {error && (
+                <p style={{ color: '#E88FA4', fontSize: '13px', margin: 0 }}>
+                  Ocurrió un error al enviar. Intenta de nuevo o escríbeme directamente.
+                </p>
+              )}
+              <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+                {loading ? 'Enviando...' : 'Enviar solicitud'}
               </button>
             </form>
           )}

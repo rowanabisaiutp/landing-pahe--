@@ -1,7 +1,7 @@
 export default function WhatsAppButton() {
   return (
     <a
-      href="https://wa.me/521XXXXXXXXXX?text=Hola%20Aide%2C%20me%20interesa%20tu%20servicio%20de%20reclutamiento"
+      href="https://wa.me/523321631410?text=Hola%20Aide%2C%20me%20interesa%20tu%20servicio%20de%20reclutamiento"
       target="_blank"
       rel="noopener noreferrer"
       className="wa-btn"

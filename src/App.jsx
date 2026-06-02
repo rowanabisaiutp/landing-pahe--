@@ -4,6 +4,7 @@ import './App.css'
 import Splash        from './components/Splash'
 import Navbar        from './components/Navbar'
 import Hero          from './components/Hero'
+import About         from './components/About'
 import Stats         from './components/Stats'
 import Specialties   from './components/Specialties'
 import Services      from './components/Services'
@@ -34,6 +35,7 @@ export default function App() {
 
       <Navbar />
       <Hero />
+      <About />
       <Stats />
       <Specialties />
       <Services />
