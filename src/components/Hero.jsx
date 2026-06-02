@@ -12,8 +12,11 @@ export default function Hero() {
           para tu empresa
         </h1>
         <p className="hero-sub">
-          10 años construyendo una red de talento pasivo en IT, Marketing,
-          Administración y Alta Dirección. Shortlist en 14 días. Fee por posición cubierta.
+          Tengo más de 10 años de experiencia en reclutamiento de perfiles
+          especializados en Tecnologías de la Información, Marketing Digital,
+          puestos administrativos y altos mandos. Aide Yunis se dedica a
+          encontrar y colocar el mejor talento para empresas que buscan
+          perfiles especializados.
         </p>
         <div className="hero-actions">
           <a href="#contacto" className="btn btn-primary">Solicitar búsqueda</a>
